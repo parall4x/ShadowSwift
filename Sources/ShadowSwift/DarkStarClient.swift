@@ -80,6 +80,6 @@ public class DarkStarClient
         self.sharedKey = sharedKey
 
         // Receive and validate server confirmation code
-        guard DarkStarClient.handleServerConfirmationCode(connection: connection, sharedKey: sharedKey, endpoint: endpoint, serverEphemeralPublicKey: serverEphemeralPublicKey, clientEphemeralPublicKey: clientEphemeralPublicKey) else {return nil}
+        //guard DarkStarClient.handleServerConfirmationCode(connection: connection, sharedKey: sharedKey, endpoint: endpoint, serverEphemeralPublicKey: serverEphemeralPublicKey, clientEphemeralPublicKey: clientEphemeralPublicKey) else {return nil}
     }
 }
