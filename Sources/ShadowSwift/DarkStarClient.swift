@@ -22,8 +22,8 @@ public class DarkStarClient
 
         guard let code = DarkStar.generateServerConfirmationCode(clientSharedKey: sharedKey, endpoint: endpoint, serverEphemeralPublicKey: serverEphemeralPublicKey, clientEphemeralPublicKey: clientEphemeralPublicKey) else {return false}
 
-//         return data == code
-        return true // We'll accept any server auth code for now (test)
+         return data == code
+//        return true // We'll accept any server auth code for now (test)
     }
 
     static public func handleClientConfirmationCode(connection: Connection, theirPublicKey: P256.KeyAgreement.PublicKey, myPrivateKey: P256.KeyAgreement.PrivateKey, endpoint: NWEndpoint, serverPersistentPublicKey: P256.KeyAgreement.PublicKey, clientEphemeralPublicKey: P256.KeyAgreement.PublicKey) -> Bool
@@ -80,11 +80,12 @@ public class DarkStarClient
         guard let sharedKey = DarkStarClient.createClientSharedKey(clientEphemeralPrivateKey: clientEphemeralPrivateKey, serverEphemeralPublicKey: serverEphemeralPublicKey, serverPersistentPublicKey: serverPersistentPublicKey, serverEndpoint: endpoint) else {return nil}
         self.sharedKey = sharedKey
 
-        let keyb64 = sharedKey.withUnsafeBytes {
-            return Data(Array($0)).hex
-        }
-        
-        print("Shared key: " + keyb64)
+//      Todo: Get rid of this
+//        let keyb64 = sharedKey.withUnsafeBytes {
+//            return Data(Array($0)).hex
+//        }
+//
+//        print("Shared key: " + keyb64)
         
         // Receive and validate server confirmation code
         guard DarkStarClient.handleServerConfirmationCode(connection: connection, sharedKey: sharedKey, endpoint: endpoint, serverEphemeralPublicKey: serverEphemeralPublicKey, clientEphemeralPublicKey: clientEphemeralPublicKey) else {return nil}
