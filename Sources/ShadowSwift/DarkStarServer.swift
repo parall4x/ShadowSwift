@@ -78,6 +78,7 @@ public class DarkStarServer
         hash.update(data: clientEphemeralPublicKeyData)
         hash.update(data: serverEphemeralPublicKeyData)
         hash.update(data: DarkStarString.data)
+        hash.update(data: ServerString.data)
         let hashed = hash.finalize()
 
         let hashedData = Data(hashed)
